@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import Albums from '../components/Albums';
+import CustomForm from '../components/Form';
 
 export default class AlbumListView extends Component {
 	state = {
@@ -19,7 +20,14 @@ export default class AlbumListView extends Component {
 
 	render() {
 		return (
-			<Albums data={this.state.albums} />
+			<div>
+				<Albums data={this.state.albums} />
+				<h2>Create Album</h2>
+				<CustomForm
+					requestType="post"
+					albumId={null} 
+				/>
+			</div>
 		)
 	}
 }

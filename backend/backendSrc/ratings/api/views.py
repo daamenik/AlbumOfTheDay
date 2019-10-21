@@ -1,14 +1,11 @@
 from django.shortcuts import render
-from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework import viewsets
 from ..models import Album
 from .serializers import AlbumSerializer
 
-# Create your views here.
-class AlbumListView(ListAPIView):
-	queryset = Album.objects.all()
-	serializer_class = AlbumSerializer
-
-
-class AlbumDetailView(RetrieveAPIView):
-	queryset = Album.objects.all()
-	serializer_class = AlbumSerializer
+class AlbumViewSet(viewsets.ModelViewSet):
+    """
+    A viewset for viewing and editing user instances.
+    """
+    serializer_class = AlbumSerializer
+    queryset = Album.objects.all()

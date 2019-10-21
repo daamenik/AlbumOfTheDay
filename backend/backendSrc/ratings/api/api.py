@@ -6,13 +6,15 @@ from .serializers import AlbumSerializer
 
 
 class AlbumViewSet(viewsets.ModelViewSet):
-    permission_classes = [
-        permissions.IsAuthenticated
-    ]
-    serializer_class = AlbumSerializer
+    # permission_classes = [
+    #     permissions.IsAuthenticated
+    # ]
+    # serializer_class = AlbumSerializer
 
-    def get_queryset(self):
-        return self.request.user.albums.all()
+    # def get_queryset(self):
+    #     return self.request.user.albums.all()
+	queryset = Album.objects.all()
+	serializer_class = AlbumSerializer
 
-    def perform_create(self, serializer):
-        serializer.save(submitter=self.request.user)
+	def perform_create(self, serializer):
+		serializer.save(submitter=self.request.user)

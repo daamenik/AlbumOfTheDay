@@ -6,7 +6,7 @@ import { GET_ALBUMS, DELETE_ALBUM, ADD_ALBUM } from './types';
 
 // Get album
 export const getAlbums = () => (dispatch, getState) => {
-	axios.get('/api/albums/', tokenConfig(getState))
+	axios.get('http://localhost:8000/api/albums/', tokenConfig(getState))
 		.then(res => {
 			dispatch({
 				type: GET_ALBUMS,
@@ -17,7 +17,7 @@ export const getAlbums = () => (dispatch, getState) => {
 
 // Delete album
 export const deleteAlbum = (id) => (dispatch, getState) => {
-	axios.delete(`/api/albums/${id}/`, tokenConfig(getState))
+	axios.delete(`http://localhost:8000/api/albums/${id}/`, tokenConfig(getState))
 		.then(res => {
 			dispatch({
 				type: DELETE_ALBUM,
@@ -30,7 +30,7 @@ export const deleteAlbum = (id) => (dispatch, getState) => {
 
 // Add lead
 export const addAlbum = (album) => (dispatch, getState) => {
-	axios.post(`/api/albums/`, album, tokenConfig(getState))
+	axios.post(`http://localhost:8000/api/albums/`, album, tokenConfig(getState))
 		.then(res => {
 			dispatch({
 				type: ADD_ALBUM,

@@ -1,7 +1,6 @@
 {
 	"python.pythonPath": "${workspaceFolder}/backend/aotdenv/bin/python3",
 	"team.showWelcomeMessage": false,
-	"editor.formatOnSave": true,
 	"python.linting.pep8Enabled": true,
 	"python.linting.pylintPath": "pylint",
 	"python.linting.pylintArgs": [

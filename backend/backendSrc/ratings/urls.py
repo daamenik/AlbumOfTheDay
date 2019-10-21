@@ -1,5 +1,5 @@
 from rest_framework import routers
-from .api import AlbumViewSet
+from .api.api import AlbumViewSet
 
 router = routers.DefaultRouter()
 router.register('api/albums', AlbumViewSet, 'albums')

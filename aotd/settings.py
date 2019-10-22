@@ -25,7 +25,7 @@ SECRET_KEY = '-z+v!0z9jj2g-5t@^uq%nov^ef996t!_j4s2x09t&(7e)ixx1a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['albumoftheday.herokuapp.com']
+ALLOWED_HOSTS = ['albumoftheday.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -152,13 +152,16 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-        # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-		'rest_framework.permissions.AllowAny'
-	]
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
 }
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000',
+)
 
 CORS_ORIGIN_ALLOW_ALL = True
 

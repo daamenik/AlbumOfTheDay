@@ -7,7 +7,7 @@ class Album(models.Model):
 	artist = models.CharField(max_length=100)
 	year = models.IntegerField()
 	genre = models.CharField(max_length=100)
-	# submitter = models.ForeignKey(User, related_name="albums", on_delete=models.CASCADE, null=True)
+	submitter = models.ForeignKey(User, related_name="albums", on_delete=models.CASCADE, null=True)
 	date_submitted = models.DateField(auto_now_add=True)
 
 	def __str__(self):

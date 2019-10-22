@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 class CustomForm extends React.Component {
 	state = {
@@ -18,6 +19,11 @@ class CustomForm extends React.Component {
 		const { title, artist, genre, year } = this.state;
 		// const album = { title, artist, genre, year };
 		// this.props.addAlbum(album);
+
+		axios.defaults.headers = {
+			"Content-Type": "application/json",
+			Authorization: `Token ${this.props.token}`
+		}
 		
 		switch(requestType) {
 			case 'post':
@@ -112,4 +118,10 @@ class CustomForm extends React.Component {
 	}
 }
 
-export default CustomForm;
+const mapStateToProps = state => {
+	return {
+		token: state.auth.token
+	}
+}
+
+export default connect(mapStateToProps)(CustomForm);

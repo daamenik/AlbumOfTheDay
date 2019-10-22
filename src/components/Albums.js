@@ -38,7 +38,7 @@ const Albums = (props) => {
 				>
 				<List.Item.Meta
 					avatar={<Avatar src={item.avatar} />}
-					title={<a href={`${item.id}`}>{item.title}</a>}
+					title={<a href={`/albums/${item.id}/`}>{item.title}</a>}
 					description={item.artist}
 				/>
 				{item.content}

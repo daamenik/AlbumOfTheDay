@@ -27,7 +27,7 @@ export class CustomLayout extends Component {
 						<Link to="/">Posts</Link>
 					</Menu.Item>
 					
-					{
+					{/* {
 						this.props.isAuthenticated ?
 	
 						<Menu.Item key="2" onClick={this.props.logout}>
@@ -39,7 +39,7 @@ export class CustomLayout extends Component {
 						<Menu.Item key="2">
 							<Link to="/login">Login</Link>
 						</Menu.Item>
-					}
+					} */}
 				</Menu>
 				</Header>
 				<Content style={{ padding: '0 50px' }}>
@@ -55,9 +55,9 @@ export class CustomLayout extends Component {
 						</Link>
 					</Breadcrumb.Item>
 				</Breadcrumb>
-				<div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
+				{/* <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
 					{this.props.children}
-				</div>
+				</div> */}
 				</Content>
 				<Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
 			</Layout>

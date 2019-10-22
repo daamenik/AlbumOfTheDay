@@ -4,30 +4,49 @@ import axios from 'axios';
 import { Card, Button } from 'antd';
 
 import CustomForm from '../components/Form';
+import { connect } from 'react-redux';
 
-export default class AlbumDetailView extends Component {
+class AlbumDetailView extends Component {
 	state = {
 		album: {}
 	}
 
-	componentDidMount() {
-		const albumId = this.props.match.params.albumId;
+	componentDidUpdate(oldProps) {
+		if (oldProps.token !== this.props.token) {
+			const albumId = this.props.match.params.albumId;
 
-		axios.get(`http://localhost:8000/api/albums/${albumId}`)
-			.then(res => {
-				this.setState({
-					album: res.data
-				});
-			})
+			axios.defaults.headers = {
+				"Content-Type": "application/json",
+				Authorization: `Token ${this.props.token}`
+			}
+
+			axios.get(`http://localhost:8000/api/albums/${albumId}/`)
+				.then(res => {
+					this.setState({
+						album: res.data
+					});
+				})
+		}
 	}
 
 	handleDelete = (e) => {
-		const albumId = this.props.match.params.albumId;
-		axios.delete(`http://localhost:8000/api/albums/${albumId}`);
+		if (this.props.token) {
+			const albumId = this.props.match.params.albumId;
+			axios.delete(`http://localhost:8000/api/albums/${albumId}/`);
+
+			axios.defaults.headers = {
+				"Content-Type": "application/json",
+				Authorization: `Token ${this.props.token}`
+			}
+			
+			// TODO: Update this using Redux
+			this.props.history.push("/");
+			this.forceUpdate();
+		} else {
+			// TODO: show some kind of message
+			// Alternatively: just don't show the button if the user isn't authenticated
+		}
 		
-		// TODO: Update this using Redux
-		this.props.history.push("/");
-		this.forceUpdate();
 	}
 
 	render() {
@@ -51,3 +70,11 @@ export default class AlbumDetailView extends Component {
 		)
 	}
 }
+
+const mapStateToProps = state => {
+	return {
+		token: state.auth.token
+	}
+}
+
+export default connect(mapStateToProps)(AlbumDetailView);

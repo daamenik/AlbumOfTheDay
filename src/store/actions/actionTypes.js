@@ -4,3 +4,6 @@ export const AUTH_FAIL = "AUTH_FAIL";
 export const AUTH_LOGOUT = "AUTH_LOGOUT";
 export const GET_ERRORS = "GET_ERRORS";
 export const CREATE_MESSAGE = "CREATE_MESSAGE";
+export const GET_ALBUMS = "GET_ALBUMS";
+export const DELETE_ALBUM = "DELETE_ALBUM";
+export const ADD_ALBUM = "ADD_ALBUM";

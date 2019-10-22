@@ -1,27 +1,28 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { getAlbums, deleteAlbum } from '../store/actions/albums';
 
 import Albums from '../components/Albums';
 import CustomForm from '../components/Form';
 
-export default class AlbumListView extends Component {
-	state = {
-		albums: []
+class AlbumListView extends Component {
+	static propTypes = {
+		albums: PropTypes.array.isRequired,
+		getAlbums: PropTypes.func.isRequired,
+		deleteAlbum: PropTypes.func.isRequired
 	}
 
-	componentDidMount() {
-		axios.get("http://localhost:8000/api/albums")
-			.then(res => {
-				this.setState({
-					albums: res.data
-				});
-			})
+	componentDidUpdate(oldProps) {
+		if (oldProps.token !== this.props.token) {
+			this.props.getAlbums();
+		}
 	}
 
 	render() {
 		return (
 			<div>
-				<Albums data={this.state.albums} />
+				<Albums data={this.props.albums} />
 				<h2>Create Album</h2>
 				<CustomForm
 					requestType="post"
@@ -31,3 +32,12 @@ export default class AlbumListView extends Component {
 		)
 	}
 }
+
+const mapStateToProps = state => {
+	return {
+		token: state.auth.token,
+		albums: state.albums.albums
+	}
+}
+
+export default connect(mapStateToProps, { getAlbums, deleteAlbum })(AlbumListView);

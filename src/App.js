@@ -7,7 +7,7 @@ import 'antd/dist/antd.css';
 import { authCheckState } from './store/actions/auth';
 
 import CustomLayout from './containers/Layout';
-// import Header from './components/layout/Header';
+import Header from './components/layout/Header';
 // import Dashboard from './components/ratings/Dashboard';
 // import Alerts from './components/layout/Alerts';
 // import Login from './components/accounts/Login';
@@ -35,9 +35,10 @@ class App extends Component {
 		return (
 			<div>
 				<Router>
-					<CustomLayout {...this.props}>
+					<Header />
+					{/* <CustomLayout {...this.props}> */}
 						<BaseRouter />
-					</CustomLayout>
+					{/* </CustomLayout> */}
 				</Router>
 
 			</div>

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { AUTH_START, AUTH_SUCCESS, AUTH_FAIL, AUTH_LOGOUT } from './actionTypes';
 import { returnErrors } from './messages';
+import { endpoint } from '../../constants';
 
 export const authStart = () => {
 	return {
@@ -41,7 +42,8 @@ export const checkAuthTimeout = expirationTime => {
 export const login = (username, password) => {
 	return dispatch => {
 		dispatch(authStart());
-		axios.post('http://localhost:8000/rest-auth/login/', {
+		console.log("Logging in");
+		axios.post(`${endpoint}/rest-auth/login/`, {
 			username,
 			password
 		})
@@ -63,7 +65,7 @@ export const login = (username, password) => {
 export const register = (username, email, password1, password2) => {
     return dispatch => {
         dispatch(authStart());
-        axios.post('http://127.0.0.1:8000/rest-auth/registration/', {
+        axios.post(`${endpoint}/rest-auth/registration/`, {
             username,
             email,
             password1,
@@ -102,4 +104,25 @@ export const authCheckState = () => {
 			}
 		}
 	}
+}
+
+// SET UP CONFIG WITH TOKEN - helper function
+export const tokenConfig = getState => {
+	// Get token from state
+	const token = getState().auth.token;
+	console.log("tokenConfig called, ", token);
+
+	// Headers
+	const config = {
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	}
+
+	// If token, add to headers config
+	if (token) {
+		config.headers['Authorization'] = `Token ${token}`;
+	}
+
+	return config;
 }

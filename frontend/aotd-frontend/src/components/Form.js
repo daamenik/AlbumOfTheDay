@@ -16,7 +16,7 @@ class CustomForm extends React.Component {
 		// TODO: Add album to state with redux!
 		// e.preventDefault();
 		const { title, artist, genre, year } = this.state;
-		const album = { title, artist, genre, year };
+		// const album = { title, artist, genre, year };
 		// this.props.addAlbum(album);
 		
 		switch(requestType) {

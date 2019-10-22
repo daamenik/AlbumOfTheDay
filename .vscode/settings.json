@@ -1,7 +1,7 @@
 {
-	"python.pythonPath": "${workspaceFolder}/backend/aotdenv/bin/python3",
+	"python.pythonPath": "aotdenv/bin/python",
 	"team.showWelcomeMessage": false,
-	"python.linting.pep8Enabled": true,
+	// "python.linting.pycodestyleEnabled": true,
 	"python.linting.pylintPath": "pylint",
 	"python.linting.pylintArgs": [
 		"--load-plugins",
@@ -9,8 +9,8 @@
 	],
 	"python.linting.pylintEnabled": true,
 	"python.linting.enabled": true,
-	"python.venvPath": "${workspaceFolder}/backend/aotdenv/bin/python3",
-	"python.linting.pep8Args": [
+	"python.venvPath": "${workspaceFolder}/aotdenv/bin/python3",
+	"python.linting.pycodestyleArgs": [
 		"--ignore=E501"
 	]
 }

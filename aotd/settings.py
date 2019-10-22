@@ -25,7 +25,7 @@ SECRET_KEY = '-z+v!0z9jj2g-5t@^uq%nov^ef996t!_j4s2x09t&(7e)ixx1a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['albumoftheday.herokuapp.com']
 
 
 # Application definition
@@ -139,6 +139,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
@@ -146,7 +148,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
 		'rest_framework.permissions.AllowAny'
-    ]
+	]
 }
 
 CORS_ORIGIN_ALLOW_ALL = True

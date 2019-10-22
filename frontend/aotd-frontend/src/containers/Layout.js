@@ -30,7 +30,7 @@ export class CustomLayout extends Component {
 					{
 						this.props.isAuthenticated ?
 	
-						<Menu.Item key="2">
+						<Menu.Item key="2" onClick={this.props.logout}>
 							Logout
 						</Menu.Item>
 	
@@ -71,4 +71,5 @@ const mapDispatchToProps = dispatch => {
 	}
 }
 
+// TODO: withRouter(connect(...)) ???
 export default connect(null, mapDispatchToProps)(CustomLayout);  

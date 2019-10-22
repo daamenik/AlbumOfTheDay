@@ -3,8 +3,8 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { register } from '../store/actions/auth';
+import { createMessage } from '../store/actions/messages';
 import { Spin, Icon } from 'antd';
-// import { createMessage } from '../../actions/messages';
 
 const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
 
@@ -28,15 +28,10 @@ export class Register extends Component {
 		const { username, email, password, password2 } = this.state;
 
 		if (password !== password2) {
-			console.error("Passwords don't match");
-			// this.props.createMessage({ passwordsDontMatch: "Passwords don't match "});
+			// console.error("Passwords don't match");
+			this.props.createMessage({ passwordsDontMatch: "Passwords don't match "});
 		} else {
-			const newUser = {
-				username,
-				password,
-				email
-			};
-			this.props.register(newUser);
+			this.props.register(username, email, password, password2);
 		}
 	}
 
@@ -142,7 +137,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
 	return {
-		register: (username, email, password, password2) => dispatch(register(username, email, password, password2))
+		register: (username, email, password, password2) => dispatch(register(username, email, password, password2)),
+		createMessage: msg => dispatch(createMessage(msg))
 	}
 }
 

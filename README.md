@@ -15,3 +15,6 @@
    4. `pip install -r requirements.txt`
    5. `cd src`
    6. `python manage.py runserver`
+
+## TODOs
+1. Add error message alerts back in

@@ -93,13 +93,17 @@ WSGI_APPLICATION = 'aotd.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'albumofthedaytabase',
+    #             'USER': 'root',
+    #             'PASSWORD': 'Beezer12Wa$hingbeard',
+    #             'HOST': 'localhost',
+    #             'PORT': ''
+    # }
+	'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'albumofthedaytabase',
-                'USER': 'root',
-                'PASSWORD': 'Beezer12Wa$hingbeard',
-                'HOST': 'localhost',
-                'PORT': ''
     }
 }
 

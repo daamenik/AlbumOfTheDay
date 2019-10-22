@@ -1,5 +1,11 @@
 # Album of the Day
 
+## Structure
+* aotd: main Django project folder with settings.py, etc.
+* public: What will be served. Created by create-react-app, contains index.html
+* ratings: Django app for album ratings and cosas así
+* src: React frontend
+
 ## How to run locally
 1. Clone the project
 2. Open a terminal

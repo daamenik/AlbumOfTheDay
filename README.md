@@ -22,5 +22,8 @@
    5. `cd src`
    6. `python manage.py runserver`
 
+## Deploying to Heroku
+1. heroku config:set DISABLE_COLLECTSTATIC=1
+
 ## TODOs
 1. Add error message alerts back in

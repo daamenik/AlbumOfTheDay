@@ -1,16 +1,16 @@
 {
-	"python.pythonPath": "aotdenv/bin/python",
+	"python.pythonPath": "/Users/domgiandinoto/Desktop/code/albumoftheday/aotdenv/bin/python3.7",
 	"team.showWelcomeMessage": false,
 	// "python.linting.pycodestyleEnabled": true,
-	"python.linting.pylintPath": "pylint",
-	"python.linting.pylintArgs": [
-		"--load-plugins",
-		"pylint_django"
-	],
-	"python.linting.pylintEnabled": true,
+	// "python.linting.pylintPath": "pylint",
+	// "python.linting.pylintArgs": [
+	// 	"--load-plugins",
+	// 	"pylint_django"
+	// ],
+	// "python.linting.pylintEnabled": true,
 	"python.linting.enabled": true,
 	"python.venvPath": "${workspaceFolder}/aotdenv/bin/python3",
-	"python.linting.pycodestyleArgs": [
-		"--ignore=E501"
-	]
+	// "python.linting.pycodestyleArgs": [
+	// 	"--ignore=E501"
+	// ]
 }

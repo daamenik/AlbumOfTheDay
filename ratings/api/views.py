@@ -23,8 +23,8 @@ class AlbumViewSet(viewsets.ModelViewSet):
 			permission_classes = [permissions.IsAuthenticated]
 		return [permission() for permission in permission_classes]
 	
-	def perform_create(self, serializer):
-		serializer.save(submitter=self.request.user)
+	# def perform_create(self, serializer):
+	# 	serializer.save(submitter=self.request.user)
 
 # class AlbumViewSet(viewsets.ModelViewSet):
 #     serializer_class = AlbumSerializer

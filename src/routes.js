@@ -1,11 +1,12 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import AlbumListView from './containers/AlbumListView';
-import AlbumDetailView from './containers/AlbumDetailView';
+// import AlbumDetailView from './containers/AlbumDetailView';
 import AlbumView from './components/pages/AlbumView';
 import Login from './containers/Login';
 import Register from './containers/Register';
 import Home from './components/pages/Home';
+import RatingList from './components/RatingList';
 
 const BaseRouter = () => (
 	<div>
@@ -14,6 +15,7 @@ const BaseRouter = () => (
 		<Route exact path="/albums/:albumId" component={AlbumView} />
 		<Route exact path="/login" component={Login} />
 		<Route exact path="/register" component={Register} />
+		<Route exact path="/ratings" component={RatingList} />
 	</div>
 );
 

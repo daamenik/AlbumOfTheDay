@@ -3,21 +3,24 @@ import { createMessage, returnErrors } from './messages';
 import { tokenConfig } from './auth';
 import { endpoint } from '../../constants';
 
-import { GET_ALBUMS, DELETE_ALBUM, ADD_ALBUM } from './actionTypes';
-import SpotifyWebApi from 'spotify-web-api-js';
-
-var Spotify = require('spotify-web-api-js');
-var s = new Spotify();
-var spotifyApi = new SpotifyWebApi();
-spotifyApi.setAccessToken('a4b39ef0d58d4f89bddba349840ea5db');
+import { GET_ALBUMS, DELETE_ALBUM, ADD_ALBUM, GET_SINGLE_ALBUM } from './actionTypes';
 
 // Get album
 export const getAlbums = () => (dispatch, getState) => {
-	// debugger;
 	axios.get(`${endpoint}/albums/`, tokenConfig(getState))
 		.then(res => {
 			dispatch({
 				type: GET_ALBUMS,
+				payload: res.data
+			});
+		}).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
+}
+
+export const getSingleAlbum = (id) => (dispatch, getState) => {
+	axios.get(`${endpoint}/albums/${id}/`, tokenConfig(getState))
+		.then(res => {
+			dispatch({
+				type: GET_SINGLE_ALBUM,
 				payload: res.data
 			});
 		}).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
@@ -38,13 +41,6 @@ export const deleteAlbum = (id) => (dispatch, getState) => {
 
 // Add lead
 export const addAlbum = (album) => (dispatch, getState) => {
-	const { title } = album;
-
-	// spotifyApi.searchAlbums(title)
-	// 	.then(data => {
-	// 		console.log(data);
-	// 	})
-
 	axios.post(`${endpoint}/albums/`, album, tokenConfig(getState))
 		.then(res => {
 			dispatch({

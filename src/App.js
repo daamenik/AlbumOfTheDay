@@ -6,7 +6,7 @@ import BaseRouter from './routes';
 import 'antd/dist/antd.css';
 import { authCheckState } from './store/actions/auth';
 
-import CustomLayout from './containers/Layout';
+// import CustomLayout from './containers/Layout';
 import Header from './components/layout/Header';
 // import Dashboard from './components/ratings/Dashboard';
 // import Alerts from './components/layout/Alerts';

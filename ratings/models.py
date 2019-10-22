@@ -9,6 +9,7 @@ class Album(models.Model):
 	genre = models.CharField(max_length=100)
 	submitter = models.ForeignKey(User, related_name="albums", on_delete=models.CASCADE, null=True)
 	date_submitted = models.DateField(auto_now_add=True)
+	# default cover is Dark Side of the Moon
 	coverUrl = models.CharField(max_length=200, null=True, default="https://i.scdn.co/image/e5f5a50956c2c7dd5411051ca507b4f771d6d816")
 
 	def __str__(self):

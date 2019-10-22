@@ -1,4 +1,4 @@
-import { GET_ALBUMS, DELETE_ALBUM, ADD_ALBUM } from '../actions/actionTypes';
+import { GET_ALBUMS, DELETE_ALBUM, ADD_ALBUM, GET_SINGLE_ALBUM } from '../actions/actionTypes';
 
 const initialState = {
 	albums: []
@@ -10,6 +10,11 @@ export default function(state=initialState, action) {
 			return {
 				...state,
 				albums: action.payload
+			}
+		case GET_SINGLE_ALBUM:
+			return {
+				...state,
+				albums: [action.payload]
 			}
 		case DELETE_ALBUM:
 			return {

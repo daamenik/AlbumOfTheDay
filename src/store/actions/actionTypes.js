@@ -7,3 +7,4 @@ export const CREATE_MESSAGE = "CREATE_MESSAGE";
 export const GET_ALBUMS = "GET_ALBUMS";
 export const DELETE_ALBUM = "DELETE_ALBUM";
 export const ADD_ALBUM = "ADD_ALBUM";
+export const GET_SINGLE_ALBUM = "GET_SINGLE_ALBUM";

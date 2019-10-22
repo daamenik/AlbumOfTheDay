@@ -8,7 +8,7 @@ import CustomForm from '../components/Form';
 
 class AlbumListView extends Component {
 	static propTypes = {
-		albums: PropTypes.array.isRequired,
+		albums: PropTypes.object.isRequired,
 		getAlbums: PropTypes.func.isRequired,
 		deleteAlbum: PropTypes.func.isRequired
 	}

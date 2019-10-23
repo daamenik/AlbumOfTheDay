@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets, permissions
-from ..models import Album
-from .serializers import AlbumSerializer
+from ..models import Album, Rating
+from .serializers import AlbumSerializer, RatingSerializer
 from django.http import HttpResponse
 
 class AlbumViewSet(viewsets.ModelViewSet):
@@ -17,3 +17,8 @@ class AlbumViewSet(viewsets.ModelViewSet):
 	
 	# def perform_create(self, serializer):
 	# 	serializer.save(submitter=self.request.user)
+
+class RatingViewSet(viewsets.ModelViewSet):
+	serializer_class = RatingSerializer
+	queryset = Rating.objects.all()
+	permission_classes = (permissions.AllowAny,)

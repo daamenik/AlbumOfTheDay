@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ..models import Album
+from ..models import Album, Rating
 
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
@@ -33,3 +33,8 @@ class AlbumSerializer(serializers.ModelSerializer):
 
 		album.save()
 		return album
+
+class RatingSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Rating
+		fields = '__all__'

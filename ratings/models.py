@@ -14,3 +14,14 @@ class Album(models.Model):
 
 	def __str__(self):
 		return self.title
+
+class Rating(models.Model):
+	rating = models.DecimalField(max_digits=3, decimal_places=2)
+	album = models.ForeignKey(Album, related_name="ratings", on_delete=models.CASCADE, null=True)
+	favorite_song = models.CharField(max_length=100)
+	additional_thoughts = models.CharField(max_length=2500)
+	submitter = models.ForeignKey(User, related_name="ratings", on_delete=models.CASCADE, null=True)
+	date_submitted = models.DateField(auto_now_add=True)
+
+	def __str__(self):
+		return str(self.album) + ": " + self.rating

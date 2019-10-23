@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { getSingleAlbum } from '../../store/actions/albums';
 import PropTypes from 'prop-types';
 import '../../App.css';
+import AlbumRatings from '../AlbumRatings';
+// import ratings from '../../store/reducers/ratings';
 
 export class AlbumView extends Component {
 	static propTypes = {
@@ -16,9 +18,9 @@ export class AlbumView extends Component {
 	}
 
 	render() {
-		const album = this.props.albums[0];
+		if(this.props.albums[0]) {
+			const { title, artist, genre, year, coverUrl } = this.props.albums[0];
 
-		if(album) {
 			let albumRating = 8;
 			let ratingColor = "";
 			if (albumRating < 2.5) {
@@ -42,34 +44,21 @@ export class AlbumView extends Component {
 					<div className="single-album-display">
 						<div className="row center">
 							<div className="col album-cover">
-								<img height="350" src={album["coverUrl"]} alt="Album cover" />
+								<img height="350" src={coverUrl} alt="Album cover" />
 								<p>Sumbitted by Cole McReynolds</p>
 							</div>
 							<div className="col">
 								<div className="album-description">
 									<u>10-22-19</u>
-									<h1><em>{album["title"]} ({album["year"]})</em></h1>
-									<h2>{album["artist"]}</h2>
-									<h3>{album["genre"]}</h3>
+									<h1><em>{title} ({year})</em></h1>
+									<h2>{artist}</h2>
+									<h3>{genre}</h3>
 								</div>
 								<h1 style={ratingStyle}>{albumRating}/10</h1>
 							</div>
 						</div>
 					</div>
-					<div className="rating">
-						<p>Cole McReynolds</p>
-						<div className="card" id="rating-info">
-							<div className="row card-body">
-								<div className="col-1 text-center">
-									8
-								</div>
-								<div className="col-11">
-									<p>Favorite Song: 400 Lux</p>
-									<p>Additional Thoughts: This album was really good!</p>
-								</div>
-							</div>
-						</div>
-					</div>
+					<AlbumRatings albumId={this.props.match.params.albumId}/>
 				</div>
 			)
 		} else {
@@ -81,7 +70,7 @@ export class AlbumView extends Component {
 
 const mapStateToProps = state => {
 	return {
-		albums: state.albums.albums
+		albums: state.albums.albums,
 	}
 }
 

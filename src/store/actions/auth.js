@@ -42,7 +42,6 @@ export const checkAuthTimeout = expirationTime => {
 export const login = (username, password) => {
 	return dispatch => {
 		dispatch(authStart());
-		console.log("Logging in");
 		axios.post(`${endpoint}/rest-auth/login/`, {
 			username,
 			password
@@ -110,7 +109,6 @@ export const authCheckState = () => {
 export const tokenConfig = getState => {
 	// Get token from state
 	const token = getState().auth.token;
-	console.log("tokenConfig called, ", token);
 
 	// Headers
 	const config = {

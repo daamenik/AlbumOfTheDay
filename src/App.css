@@ -1,3 +1,31 @@
-.albumCover {
-	height: "350px";
+.single-album-display {
+	padding: 20px 0px;
 }
+
+.album-cover {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.album-description {
+	margin-top: 75px;
+}
+
+.rating {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px 0px;
+	width: 80%;
+	/* background-color: skyblue; */
+	/* border-width: 5px; */
+	/* border-color: blue; */
+}
+
+#rating-info {
+	border-width: 2px;
+	border-color: rgb(26, 151, 34);
+	background-color: lightgreen;
+}	

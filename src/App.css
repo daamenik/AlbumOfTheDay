@@ -1,3 +1,55 @@
+* {
+	font-family: 'Futura', sans-serif;
+}
+
+/* HOME */
+/* ----------------------------------- */
+
+#homepage {
+	padding: 20px 50px;
+}
+
+#homepage button {
+	margin: 20px auto;
+}
+
+.header {
+	padding-top: 20px;
+}
+
+#todays-album {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: right;
+	width: 80%;
+	padding: 10px;
+}
+
+.today-text {
+	text-align: right;
+}
+
+.multiple-albums {
+	text-align: center;
+}
+
+.mini-album-display {
+	display: inline-block;
+	margin: 0px 10px;
+	max-width: 125px;
+	word-wrap: break-word;
+	vertical-align: text-top;
+}
+
+.mini-album-description {
+	font-size: 10px;
+    padding: 10px 0px;
+}
+
+/* ALBUM VIEW */
+/* ----------------------------------- */
+
 .single-album-display {
 	padding: 20px 0px;
 }
@@ -7,6 +59,8 @@
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
+	/* border-width: 5px; */
+	/* border-color: black; */
 }
 
 .album-description {
@@ -26,6 +80,5 @@
 
 #rating-info {
 	border-width: 2px;
-	border-color: rgb(26, 151, 34);
-	background-color: lightgreen;
+	border-color: black;
 }	

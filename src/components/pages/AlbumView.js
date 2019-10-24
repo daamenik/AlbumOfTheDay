@@ -22,6 +22,7 @@ export class AlbumView extends Component {
 			const { title, artist, genre, year, coverUrl } = this.props.albums[0];
 
 			let albumRating = 8;
+			
 			let ratingColor = "";
 			if (albumRating < 2.5) {
 				ratingColor = "darkred";

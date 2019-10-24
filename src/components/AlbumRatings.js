@@ -16,22 +16,44 @@ export class AlbumRatings extends Component {
 
 	render() {
 		if (this.props.ratings.length > 0) {
-			var ratingCards = this.props.ratings.map(({ id, rating, favorite_song, additional_thoughts }) => (
-				<div className="rating" key={id}>
-					<p>Cole McReynolds</p>
-					<div className="card" id="rating-info">
-						<div className="row card-body">
-							<div className="col-1 text-center">
-								{rating}
-							</div>
-							<div className="col-11">
-								<p>Favorite Song: {favorite_song}</p>
-								<p>Additional Thoughts: {additional_thoughts}</p>
+
+			// var ratingCards = [];
+
+			var ratingCards = this.props.ratings.map(({ id, rating, favorite_song, additional_thoughts }) => {
+				let ratingColor = ""
+				if (rating < 2.5) {
+					ratingColor = "red";
+				} else if (rating < 5) {
+					ratingColor = "lightpink";
+				} else if (rating == 5) {
+					ratingColor = "lightgoldenrodyellow";
+				} else if (rating < 7.5) {
+					ratingColor = "lightgreen";
+				} else {
+					ratingColor = "rgb(37, 185, 11)";
+				}
+
+				let cardStyle = {
+					backgroundColor: ratingColor
+				}
+
+				return (
+					<div className="rating" key={id}>
+						<p>Cole McReynolds</p>
+						<div className="card" style={cardStyle} id="rating-info">
+							<div className="row card-body">
+								<div className="col-1 text-center">
+									{rating}
+								</div>
+								<div className="col-11">
+									<p>Favorite Song: {favorite_song}</p>
+									<p>Additional Thoughts: {additional_thoughts}</p>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			));
+				);
+			});
 
 			return (
 				<div>

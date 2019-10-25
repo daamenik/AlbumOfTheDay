@@ -39,7 +39,7 @@ export class AlbumRatings extends Component {
 
 				return (
 					<div className="rating" key={id}>
-						<p>Cole McReynolds</p>
+						<p>User McUserFace</p>
 						<div className="card" style={cardStyle} id="rating-info">
 							<div className="row card-body">
 								<div className="col-1 text-center">

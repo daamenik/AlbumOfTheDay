@@ -10,8 +10,8 @@ export const getAlbumRatings = (albumId) => (dispatch, getState) => {
 	axios.get(`${endpoint}/ratings/`, tokenConfig(getState))
 		.then(res => {
 			albumId = Number(albumId);
-			console.log(albumId);
-			console.log(res.data);
+
+			// TODO: Get username from user id
 
 			dispatch({
 				type: GET_ALBUM_RATINGS,

@@ -19,22 +19,24 @@ export class AlbumView extends Component {
 
 	render() {
 		if(this.props.albums[0]) {
-			const { title, artist, genre, year, coverUrl } = this.props.albums[0];
-
-			let albumRating = 8;
+			const { title, artist, genre, year, cover_url, average_rating } = this.props.albums[0];
 			
+			console.log(average_rating);
+
 			let ratingColor = "";
-			if (albumRating < 2.5) {
+			if (average_rating < 2.5) {
 				ratingColor = "darkred";
-			} else if (albumRating < 5) {
+			} else if (average_rating < 5) {
 				ratingColor = "red";
-			} else if (albumRating === 5) {
+			} else if (average_rating === 5) {
 				ratingColor = "yellow";
-			} else if (albumRating < 7.5) {
-				ratingColor = "green";
+			} else if (average_rating < 7.5) {
+				ratingColor = "lightgreen";
 			} else {
 				ratingColor = "darkgreen";
 			}
+
+			
 
 			let ratingStyle = {
 				color: ratingColor
@@ -45,8 +47,8 @@ export class AlbumView extends Component {
 					<div className="single-album-display">
 						<div className="row center">
 							<div className="col album-cover">
-								<img height="350" src={coverUrl} alt="Album cover" />
-								<p>Sumbitted by Cole McReynolds</p>
+								<img height="350" src={cover_url} alt="Album cover" />
+								<p>Submitted by anonymous</p>
 							</div>
 							<div className="col">
 								<div className="album-description">
@@ -55,7 +57,7 @@ export class AlbumView extends Component {
 									<h2>{artist}</h2>
 									<h3>{genre}</h3>
 								</div>
-								<h1 style={ratingStyle}>{albumRating}/10</h1>
+								<h1 style={ratingStyle}>{average_rating}/10</h1>
 							</div>
 						</div>
 					</div>

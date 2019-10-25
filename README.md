@@ -26,5 +26,10 @@
 1. Change "hostURL" in src/constants.js to "https://albumoftheday.herokuapp.com"
 2. heroku config:set DISABLE_COLLECTSTATIC=1
 
-## TODOs
-1. Add error message alerts back in
+## TODO List
+1. Get most recent albums for front page
+2. Migrate users
+3. Migrate rating data from spreadsheet
+4. Add calculation of avg rating when someone rates an album
+5. Add submission forms
+6. Add error message alerts back in

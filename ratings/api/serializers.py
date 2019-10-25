@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from ..models import Album, Rating
+from django.contrib.auth.models import User
 
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
@@ -9,6 +10,10 @@ client_secret = 'a4b39ef0d58d4f89bddba349840ea5db'
 
 # Album serializer
 class AlbumSerializer(serializers.ModelSerializer):
+	# def __init__(self, *args, **kwargs):
+	# 	many = kwargs.pop('many', True)
+	# 	super(AlbumSerializer, self).__init__(many=many, *args, **kwargs)
+
 	class Meta:
 		model = Album
 		fields = '__all__'
@@ -27,14 +32,17 @@ class AlbumSerializer(serializers.ModelSerializer):
 			albumResult = items[0]
 			coverUrl = albumResult['images'][0]['url']
 
-		print(coverUrl)
-		print(album)
 		album.coverUrl = coverUrl
-
 		album.save()
+
 		return album
 
 class RatingSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Rating
 		fields = '__all__'
+
+class UserSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = User
+		fields = ('id', 'username', 'email')

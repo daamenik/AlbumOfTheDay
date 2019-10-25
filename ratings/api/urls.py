@@ -1,8 +1,12 @@
 from django.urls import path
-from .views import AlbumViewSet, RatingViewSet
+from .views import AlbumViewSet, RatingViewSet, UserListCreateAPI, UserRetrieveAPI
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
-router.register('albums', AlbumViewSet, basename='user')
+router.register('albums', AlbumViewSet)
 router.register('ratings', RatingViewSet)
-urlpatterns = router.urls
+urlpatterns = [
+	path('users/', UserListCreateAPI.as_view()),
+	path('users/<pk>/', UserRetrieveAPI.as_view())
+]
+urlpatterns += router.urls

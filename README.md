@@ -27,9 +27,9 @@
 2. heroku config:set DISABLE_COLLECTSTATIC=1
 
 ## TODO List
-1. Get most recent albums for front page
-2. Migrate users
-3. Migrate rating data from spreadsheet
+1. Get data for front page
+2. Begin using PostgreSQL
+3. Migrate rest of rating/album data from spreadsheet
 4. Add calculation of avg rating when someone rates an album
 5. Add submission forms
 6. Add error message alerts back in

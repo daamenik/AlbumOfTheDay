@@ -39,15 +39,15 @@ export class AlbumRatings extends Component {
 
 				return (
 					<div className="rating" key={id}>
-						<p>User McUserFace</p>
+						{/* <p>User McUserFace</p> */}
 						<div className="card" style={cardStyle} id="rating-info">
 							<div className="row card-body">
 								<div className="col-1 text-center">
 									{rating}
 								</div>
 								<div className="col-11">
-									<p>Favorite Song: {favorite_song}</p>
-									<p>Additional Thoughts: {additional_thoughts}</p>
+									{favorite_song ? <p>Favorite Song: {favorite_song}</p> : null}
+									{additional_thoughts ? <p>Additional Thoughts: {additional_thoughts}</p> : null}
 								</div>
 							</div>
 						</div>

@@ -19,7 +19,7 @@ export class AlbumView extends Component {
 
 	render() {
 		if(this.props.albums[0]) {
-			const { title, artist, genre, year, cover_url, average_rating } = this.props.albums[0];
+			const { title, artist, genre, year, cover_url, average_rating, date_submitted } = this.props.albums[0];
 			
 			console.log(average_rating);
 
@@ -52,7 +52,7 @@ export class AlbumView extends Component {
 							</div>
 							<div className="col">
 								<div className="album-description">
-									<u>10-22-19</u>
+									<u>{date_submitted}</u>
 									<h1><em>{title} ({year})</em></h1>
 									<h2>{artist}</h2>
 									<h3>{genre}</h3>

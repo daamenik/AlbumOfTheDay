@@ -17,8 +17,6 @@ export class AlbumRatings extends Component {
 	render() {
 		if (this.props.ratings.length > 0) {
 
-			// var ratingCards = [];
-
 			var ratingCards = this.props.ratings.map(({ id, rating, favorite_song, additional_thoughts }) => {
 				let ratingColor = ""
 				if (rating < 2.5) {

@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets, permissions, generics
+from rest_framework.views import APIView
+from rest_framework.response import Response
 from ..models import Album, Rating, User
 from .serializers import AlbumSerializer, RatingSerializer, UserSerializer
 from django.http import HttpResponse
@@ -33,3 +35,23 @@ class UserRetrieveAPI(generics.RetrieveAPIView):
 	serializer_class = UserSerializer
 	queryset = User.objects.all()
 	permission_classes = [permissions.AllowAny]
+
+class LatestAlbums(APIView):
+	permission_classes = (permissions.AllowAny,)
+
+	def get(self, request, format=None):
+		"""
+		Return the last five albums for the front page
+		"""
+		albumsByDate = Album.objects.order_by('-date_submitted')[:6]
+		return Response(AlbumSerializer(albumsByDate, many=True).data)
+
+class TopRatedAlbums(APIView):
+	permission_classes = (permissions.AllowAny,)
+
+	def get(self, request, format=None):
+		"""
+		Return the five highest-rated albums for the front page
+		"""
+		albumsByDate = Album.objects.order_by('-average_rating')[:5]
+		return Response(AlbumSerializer(albumsByDate, many=True).data)

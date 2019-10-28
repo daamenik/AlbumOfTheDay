@@ -1,143 +1,93 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+import { getLatestAlbums, getTopAlbums } from '../../store/actions/albums';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class Home extends Component {
+
+	static propTypes = {
+		getLatestAlbums: PropTypes.func.isRequired,
+		recentAlbums: PropTypes.array.isRequired,
+		topAlbums: PropTypes.array.isRequired
+	}
+
+	componentDidMount() {
+		this.props.getLatestAlbums();
+		this.props.getTopAlbums();
+	}
+
+	generateAlbumDisplay(list, includeRating=false) {
+		return list.map(album => (
+			<span className="mini-album-display" key={album.id}>
+				<a href={`/albums/${album.id}/`}>
+					<img height="100" src={album.cover_url} alt={album.title}/>
+				</a>
+				<div className="mini-album-description">
+					<p>
+						{album.date_submitted}<br />
+						<strong>{album.title}</strong><br />
+						<em>{album.artist}</em><br />
+						{includeRating ? <strong>{album.average_rating}/10</strong> : null}
+					</p>
+				</div>
+			</span>
+		));
+	}
+
 	render() {
-		return (
-			<div id="homepage">
-				<h1 className="text-center header">Welcome to the Album of the Day club!</h1>
+
+		// creating the row of recent albums
+		var recentAlbumsList = this.generateAlbumDisplay(this.props.recentAlbums.slice(1, 7));
+		var topAlbumsList = this.generateAlbumDisplay(this.props.topAlbums, true);
+
+		var currentAlbum = this.props.recentAlbums[0];
+		var currentAlbumDisplay = currentAlbum ? (
+			<Fragment>
 				<div id="todays-album">
 					<div className="row">
-						<div className="col-lg-5 today-text">
+						<span className="col-lg-5 today-text">
 								<strong>
 									TODAY'S<br/>
 									ALBUM
 								</strong>
-						</div>
-						<div className="col-lg-2 text-center">
-							<img height="100" src="https://i.scdn.co/image/ab67616d0000b273fce23dadb51975ebf2e9d75c" alt="Because the Internet"/>
-						</div>
-						<div className="col-lg-5 text-left">
+						</span>
+						<span className="col-lg-2 text-center">
+							<img height="100" src={currentAlbum.cover_url} alt={currentAlbum.title}/>
+						</span>
+						<span className="col-lg-5 text-left">
 							<p>
-								Because The Internet <br/>
-								Childish Gambino <br/>
-								Twitter Rap • 2013
+								{currentAlbum.title} <br/>
+								{currentAlbum.artist} <br/>
+								{currentAlbum.genre} • {currentAlbum.year}
 							</p> 
-						</div>
+						</span>
 					</div>
 				</div>
 				<div className="text-center">
-					<button className="btn-primary">
-						Rate it!
-					</button>
+					<Link to={`/albums/${currentAlbum.id}`}>
+						<button className="btn-primary">
+							Rate it!
+						</button>
+					</Link>
 				</div>
+			</Fragment>
+		) : null;
+
+		return (
+			<div id="homepage">
+				<h1 className="text-center header">Welcome to the Album of the Day club!</h1>
+				{currentAlbumDisplay}
 				<div id="recent-albums" className="multiple-albums">
 					<p>Recent Albums</p>
 					<div>
-						<span className="mini-album-display">
-							<img height="100" src="http://f0.bcbits.com/img/a1652238611_10.jpg" alt="FreeFallin"/>
-							<div className="mini-album-description">
-								<p>
-									4-13-2019<br />
-									<strong>THE REMIXES, VOL. 3</strong><br />
-									<em>Infinitefreefall</em>
-								</p>
-							</div>
-						</span>
-						<span className="mini-album-display">
-							<img height="100" src="http://f0.bcbits.com/img/a1652238611_10.jpg" alt="FreeFallin"/>
-							<div className="mini-album-description">
-								<p>
-									4-13-2019<br />
-									<strong>THE REMIXES, VOL. 3</strong><br />
-									<em>Infinitefreefall</em>
-								</p>
-							</div>
-						</span>
-						<span className="mini-album-display">
-							<img height="100" src="http://f0.bcbits.com/img/a1652238611_10.jpg" alt="FreeFallin"/>
-							<div className="mini-album-description">
-								<p>
-									4-13-2019<br />
-									<strong>THE REMIXES, VOL. 3</strong><br />
-									<em>Infinitefreefall</em>
-								</p>
-							</div>
-						</span>
-						<span className="mini-album-display">
-							<img height="100" src="http://f0.bcbits.com/img/a1652238611_10.jpg" alt="FreeFallin"/>
-							<div className="mini-album-description">
-								<p>
-									4-13-2019<br />
-									<strong>THE REMIXES, VOL. 3</strong><br />
-									<em>Infinitefreefall</em>
-								</p>
-							</div>
-						</span>
-						<span className="mini-album-display">
-							<img height="100" src="http://f0.bcbits.com/img/a1652238611_10.jpg" alt="FreeFallin"/>
-							<div className="mini-album-description">
-								<p>
-									4-13-2019<br />
-									<strong>THE REMIXES, VOL. 3</strong><br />
-									<em>Infinitefreefall</em>
-								</p>
-							</div>
-						</span>
+						{recentAlbumsList}
 					</div>
 				</div>
 				<div id="top-albums" className="multiple-albums">
 					<p>Top Rated Albums</p>
 					<div>
-						<span className="mini-album-display">
-							<img height="100" src="https://images-na.ssl-images-amazon.com/images/I/61Z8Z5i%2BM8L._SX355_.jpg" alt="FreeFallin"/>
-							<div className="mini-album-description">
-								<p>
-									4-13-2019<br />
-									<strong>MARVIN'S MARVELOUS MECHANICAL MUSEUM</strong><br />
-									<em>Tally Hall</em>
-								</p>
-							</div>
-						</span>
-						<span className="mini-album-display">
-							<img height="100" src="https://images-na.ssl-images-amazon.com/images/I/61Z8Z5i%2BM8L._SX355_.jpg" alt="FreeFallin"/>
-							<div className="mini-album-description">
-								<p>
-									4-13-2019<br />
-									<strong>MARVIN'S MARVELOUS MECHANICAL MUSEUM</strong><br />
-									<em>Tally Hall</em>
-								</p>
-							</div>
-						</span>
-						<span className="mini-album-display">
-							<img height="100" src="https://images-na.ssl-images-amazon.com/images/I/61Z8Z5i%2BM8L._SX355_.jpg" alt="FreeFallin"/>
-							<div className="mini-album-description">
-								<p>
-									4-13-2019<br />
-									<strong>MARVIN'S MARVELOUS MECHANICAL MUSEUM</strong><br />
-									<em>Tally Hall</em>
-								</p>
-							</div>
-						</span>
-						<span className="mini-album-display">
-							<img height="100" src="http://f0.bcbits.com/img/a1652238611_10.jpg" alt="FreeFallin"/>
-							<div className="mini-album-description">
-								<p>
-									4-13-2019<br />
-									<strong>THE REMIXES, VOL. 3</strong><br />
-									<em>Infinitefreefall</em>
-								</p>
-							</div>
-						</span>
-						<span className="mini-album-display">
-							<img height="100" src="https://images-na.ssl-images-amazon.com/images/I/61Z8Z5i%2BM8L._SX355_.jpg" alt="FreeFallin"/>
-							<div className="mini-album-description">
-								<p>
-									4-13-2019<br />
-									<strong>MARVIN'S MARVELOUS MECHANICAL MUSEUM</strong><br />
-									<em>Tally Hall</em>
-								</p>
-							</div>
-						</span>
+						{topAlbumsList}
 					</div>
 				</div>
 			</div>
@@ -145,4 +95,11 @@ class Home extends Component {
 	}
 }
 
-export default Home;
+const mapStateToProps = state => {
+	return {
+		recentAlbums: state.albums.mostRecent,
+		topAlbums: state.albums.topRated
+	}
+}
+
+export default connect(mapStateToProps, { getLatestAlbums, getTopAlbums })(Home);

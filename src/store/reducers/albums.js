@@ -1,7 +1,9 @@
-import { GET_ALBUMS, DELETE_ALBUM, ADD_ALBUM, GET_SINGLE_ALBUM } from '../actions/actionTypes';
+import { GET_ALBUMS, DELETE_ALBUM, ADD_ALBUM, GET_SINGLE_ALBUM, GET_LATEST_ALBUMS, GET_TOP_ALBUMS } from '../actions/actionTypes';
 
 const initialState = {
-	albums: []
+	albums: [],
+	mostRecent: [],
+	topRated: []
 }
 
 export default function(state=initialState, action) {
@@ -15,6 +17,16 @@ export default function(state=initialState, action) {
 			return {
 				...state,
 				albums: [action.payload]
+			}
+		case GET_LATEST_ALBUMS:
+			return {
+				...state,
+				mostRecent: action.payload
+			}
+		case GET_TOP_ALBUMS:
+			return {
+				...state,
+				topRated: action.payload
 			}
 		case DELETE_ALBUM:
 			return {

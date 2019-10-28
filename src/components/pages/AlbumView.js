@@ -7,6 +7,10 @@ import AlbumRatings from '../AlbumRatings';
 // import ratings from '../../store/reducers/ratings';
 
 export class AlbumView extends Component {
+	state = {
+		showRatingForm: false
+	}
+
 	static propTypes = {
 		albums: PropTypes.array.isRequired,
 		getSingleAlbum: PropTypes.func.isRequired
@@ -18,8 +22,13 @@ export class AlbumView extends Component {
 	}
 
 	render() {
+
+		if (this.state.showRatingForm) {
+			console.log("TODO");
+		}
+
 		if(this.props.albums[0]) {
-			const { title, artist, genre, year, cover_url, average_rating, date_submitted } = this.props.albums[0];
+			const { title, artist, genre, year, cover_url, average_rating, date_submitted, href } = this.props.albums[0];
 			
 			console.log(average_rating);
 
@@ -36,8 +45,6 @@ export class AlbumView extends Component {
 				ratingColor = "darkgreen";
 			}
 
-			
-
 			let ratingStyle = {
 				color: ratingColor
 			};
@@ -47,6 +54,7 @@ export class AlbumView extends Component {
 					<div className="single-album-display">
 						<div className="row center">
 							<div className="col album-cover">
+								<a href={href}>Click to listen on Spotify</a><br />
 								<img height="350" src={cover_url} alt="Album cover" />
 								<p>Submitted by anonymous</p>
 							</div>

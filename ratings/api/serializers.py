@@ -38,6 +38,8 @@ class AlbumSerializer(serializers.ModelSerializer):
 		return album
 
 class RatingSerializer(serializers.ModelSerializer):
+	submitter = serializers.CharField(source='submitter.username', read_only=True)
+
 	class Meta:
 		model = Rating
 		fields = '__all__'

@@ -17,7 +17,7 @@ export class AlbumRatings extends Component {
 	render() {
 		if (this.props.ratings.length > 0) {
 
-			var ratingCards = this.props.ratings.map(({ id, rating, favorite_song, additional_thoughts }) => {
+			var ratingCards = this.props.ratings.map(({ id, rating, favorite_song, additional_thoughts, submitter }) => {
 				let ratingColor = ""
 				if (rating < 2.5) {
 					ratingColor = "red";
@@ -37,7 +37,7 @@ export class AlbumRatings extends Component {
 
 				return (
 					<div className="rating" key={id}>
-						{/* <p>User McUserFace</p> */}
+						<p>{submitter}</p>
 						<div className="card" style={cardStyle} id="rating-info">
 							<div className="row card-body">
 								<div className="col-1 text-center">

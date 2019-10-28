@@ -1,4 +1,4 @@
-import { GET_ALBUM_RATINGS } from '../actions/actionTypes';
+import { GET_ALBUM_RATINGS, ADD_RATING } from '../actions/actionTypes';
 
 const initialState = {
 	ratings: []
@@ -10,6 +10,11 @@ export default function(state=initialState, action) {
 			return {
 				...state,
 				ratings: action.ratings
+			}
+		case ADD_RATING:
+			return {
+				...state,
+				ratings: [state.ratings, action.rating]
 			}
 		default:
 			return state;

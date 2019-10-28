@@ -12,3 +12,4 @@ export const GET_ALBUM_RATINGS = "GET_ALBUM_RATINGS";
 export const GET_USER_BY_ID = "GET_USER_BY_ID";
 export const GET_LATEST_ALBUMS = "GET_LATEST_ALBUMS";
 export const GET_TOP_ALBUMS = "GET_TOP_ALBUMS";
+export const ADD_RATING = "ADD_RATING";

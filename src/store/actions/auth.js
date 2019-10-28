@@ -2,6 +2,7 @@ import axios from 'axios';
 import { AUTH_START, AUTH_SUCCESS, AUTH_FAIL, AUTH_LOGOUT } from './actionTypes';
 import { returnErrors } from './messages';
 import { endpoint } from '../../constants';
+import Cookies from 'js-cookie';
 
 export const authStart = () => {
 	return {
@@ -47,6 +48,7 @@ export const login = (username, password) => {
 			password
 		})
 			.then(res => {
+				console.log(res);
 				const token = res.data.key;
 				const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
 				localStorage.setItem('token', token);
@@ -113,7 +115,7 @@ export const tokenConfig = getState => {
 	// Headers
 	const config = {
 		headers: {
-			'Content-Type': 'application/json'
+			'Content-Type': 'application/json',
 		}
 	}
 

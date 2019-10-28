@@ -27,4 +27,4 @@ class Rating(models.Model):
 	date_submitted = models.DateField(auto_now_add=True)
 
 	def __str__(self):
-		return str(self.album) + ": " + self.rating
+		return str(self.album) + ": " + self.submitter.username
